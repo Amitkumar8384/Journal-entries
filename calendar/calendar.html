@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calendar | Midnight</title>
+  <link rel="stylesheet" href="calendar.css" />
+  <!-- <link rel="stylesheet" href="../style.css" /> -->
+
+</head>
+<body>
+   <script>
+  if (!localStorage.getItem("currentUser")) {
+    location.href = "./auth/login.html";
+  }
+</script>
+
+
+
+<div class="app">
+    
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+    <h2 class="logo">🌙 Midnight</h2>
+    <nav>
+      <a href="../index.html">Journal</a>
+      <a href="../write/write.html">Write</a>
+      <a class="active">Calendar</a>
+      <a href="../Insights/Insights.html">Insights</a>
+       <input
+  type="text"
+  placeholder="Search entries..."
+  oninput="searchCalendar(this.value)"
+  class="calendar-search"/>
+    </nav>
+     <div class="sidebar-bottom">
+      <div class="user-profile" id="userProfile">
+  <div class="avatar">👤</div>
+  <span class="user-name" id="userName">User</span>
+
+  <div class="profile-menu" id="profileMenu">
+    <button id="logoutBtn">🚪 Logout</button>
+  </div>
+</div>
+      <span id="themeToggle">🌙 Dark Mode</span>
+
+    </div>
+
+  </aside>
+<!-- FULL ENTRY VIEW MODAL -->
+<div id="entryModal" class="entry-modal hidden">
+  <div class="entry-modal-content">
+    <button class="close-btn" onclick="closeEntry()">✖</button>
+    <h2 id="fullTitle"></h2>
+    <p id="fullDate"></p>
+    <div class="modal-actions">
+  <button class="modal-edit">✏ Edit</button>
+  <button class="modal-delete">🗑 Delete</button>
+</div>
+
+    <hr>
+    <div id="fullContent"></div>
+  </div>
+</div>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <header class="top">
+      <h1>Calendar</h1>
+      <p>Look back at your journey.</p>
+    </header>
+
+    <section class="calendar-layout">
+
+      <!-- MONTH -->
+      <div class="month-card">
+        <div class="month-header">
+          <button onclick="prevMonth()">‹</button>
+          <h3 id="monthLabel"></h3>
+          <button onclick="nextMonth()">›</button>
+        </div>
+
+        <div class="weekdays">
+          <span>Su</span><span>Mo</span><span>Tu</span>
+          <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+        </div>
+
+        <div class="days" id="calendarDays"></div>
+      </div>
+
+      <!-- DAY ENTRIES -->
+      <div class="day-panel">
+        <h3 id="selectedDate"></h3>
+        <br>
+        <div id="dayEntries"></div>
+        <button class="add-btn" onclick="addEntry()">＋ Add Entry</button>
+      </div>
+
+
+    </section>
+    
+
+  </main>
+</div>
+
+<script src="calendar.js"></script>
+</body>
+</html>

@@ -1,0 +1,1265 @@
+
+/* =================================================
+   THEME VARIABLES
+================================================= */
+:root{
+  /* --bg:#f7f8fc;
+  --sidebar:#ffffff;
+  --card:#ffffff;
+  --accent:#5b6cff;
+  --accent-soft:#eef1ff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border:#e5e7eb;
+  --hover:#f1f5ff;
+  --chip:#eef2ff; */
+
+
+  /* --bg:#98a7e0;
+  --sidebar:#f3f3f3;
+  --card:#adc9ea;
+  --accent:#5b6cff;
+  --accent-soft:#eef1ff;
+  --text:#864d4d;
+  --muted:#64748b;
+  --border:#e5e7eb;
+  --hover:#f1f5ff;
+  --chip:#eef2ff; */
+  --bg:#d7c9f3;
+  --sidebar:#ffffff;
+  --card:#ffffff;
+
+  --accent:#a78bfa;       
+  --accent-soft:#f3e8ff;
+
+  --text:#1e1b4b;
+  --muted:#6d6a8a;
+  --accent-gradient:linear-gradient(135deg,var(--accent-start),var(--accent-end));
+
+  --border:#e9d5ff;
+  --hover:#f5f3ff;
+  --chip:#f3e8ff;
+    /* deep red */
+}
+ /* 🌤️ SOFT PREMIUM LIGHT (Eye-friendly) */
+
+
+/* 🌙 DARK MODE */
+body.dark{
+  --bg:#1f1a16;
+  --sidebar:#17130f;
+  --card:#2a221c;
+  --accent:#e6a84c;
+  --accent-soft:#2f261f;
+  --text:#f5ede3;
+  --muted:#b8a99a;
+  --border:#3a2f27;
+  --hover:#201812;
+  --chip:#201812;
+}
+
+/* =================================================
+   RESET & BASE
+================================================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+}
+
+.app{
+  display:flex;
+  height:100vh;
+}
+
+/* =================================================
+   SIDEBAR
+================================================= */
+.sidebar{
+  width:220px;
+  background:var(--sidebar);
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  border-right:1px solid var(--border);
+}
+
+.logo{margin-bottom:30px}
+
+.sidebar nav a{
+  display:block;
+  padding:10px 14px;
+  margin-bottom:8px;
+  border-radius:10px;
+  text-decoration:none;
+  color:var(--muted);
+  position:relative;
+  transition:.25s ease;
+}
+
+.sidebar nav a:hover{
+  background:var(--hover);
+  color:var(--accent);
+  padding-left:18px;
+  transform:translateX(4px);
+}
+
+.sidebar nav a.active{
+  background:var(--accent-soft);
+  color:var(--accent);
+  font-weight:600;
+}
+
+.sidebar nav a.active::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:10%;
+  width:4px;
+  height:80%;
+  background:var(--accent);
+  border-radius:6px;
+}
+
+.sidebar-bottom{
+  margin-top:auto;
+  font-size:13px;
+  opacity:.7;
+}
+
+/* ===============================
+   USER PROFILE (SIDEBAR)
+================================ */
+
+.sidebar-bottom{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* profile wrapper */
+.user-profile{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:10px 12px;
+  border-radius:14px;
+
+  background:var(--card);
+  border:1px solid var(--border);
+
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.user-profile:hover{
+  background:var(--hover);
+  transform:translateY(-1px);
+}
+
+/* avatar */
+.avatar{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:linear-gradient(
+    135deg,
+    var(--accent-soft),
+    var(--accent)
+  );
+  color:#fff;
+  font-size:16px;
+  flex-shrink:0;
+}
+
+/* username */
+.user-name{
+  font-size:14px;
+  font-weight:600;
+  color:var(--text);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* ===============================
+   DROPDOWN MENU
+================================ */
+
+.profile-menu{
+  position:absolute;
+  left:0;
+  bottom:110%;
+
+  width:100%;
+  padding:8px;
+
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+
+  box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+  opacity:0;
+  transform:translateY(8px);
+  pointer-events:none;
+
+  transition:.25s ease;
+}
+
+/* show menu */
+.user-profile.active .profile-menu{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
+/* logout button */
+.profile-menu button{
+  width:100%;
+  background:none;
+  border:none;
+
+  padding:10px 12px;
+  border-radius:10px;
+
+  text-align:left;
+  font-size:14px;
+  font-weight:500;
+
+  color:#ef4444;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.profile-menu button:hover{
+  background:rgba(239,68,68,.12);
+}
+
+/* ===============================
+   DARK MODE POLISH
+================================ */
+
+body.dark .user-profile{
+  background:linear-gradient(
+    180deg,
+    var(--card),
+    rgba(0,0,0,.15)
+  );
+}
+
+
+/* ===============================
+   THEME TOGGLE (LIGHT / DARK)
+================================ */
+
+#themeToggle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:8px 14px;
+  border-radius:999px;
+
+  background:var(--card);
+  border:1px solid var(--border);
+
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+
+  cursor:pointer;
+  user-select:none;
+
+  transition:.3s ease;
+}
+
+/* hover */
+#themeToggle:hover{
+  background:var(--hover);
+  transform:translateY(-1px);
+}
+
+/* switch track */
+#themeToggle::before{
+  content:"";
+  width:38px;
+  height:20px;
+  border-radius:999px;
+  background:var(--border);
+  position:relative;
+  transition:.3s ease;
+}
+
+/* switch knob */
+#themeToggle::after{
+  content:"";
+  position:absolute;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#fff;
+
+  transform:translateX(2px);
+  transition:.3s ease;
+  box-shadow:0 3px 10px rgba(0,0,0,.25);
+}
+
+/* ===============================
+   DARK MODE STATE
+================================ */
+
+body.dark #themeToggle::before{
+  background:var(--accent);
+}
+
+body.dark #themeToggle::after{
+  transform:translateX(20px);
+}
+
+/* icons */
+#themeToggle span{
+  pointer-events:none;
+}
+.moving-text{
+  display:inline-block;
+  white-space:nowrap;
+  animation:moveText 14s linear infinite;
+}
+
+/* username highlight */
+.user-inline-name{
+  margin:0 6px;
+  font-weight:700;
+  color:var(--accent);
+}
+
+/* optional soft glow */
+body.dark .user-inline-name{
+  text-shadow:0 0 12px rgba(230,168,76,.35);
+}
+
+/* animation */
+@keyframes moveText{
+  from{ transform:translateX(100%); }
+  to{ transform:translateX(-100%); }
+}
+/* =================================================
+   MAIN
+================================================= */
+.main{
+  flex:1;
+  padding:30px;
+  overflow-y:auto;
+}
+
+/* =================================================
+   HERO
+================================================= */
+.hero{
+  border-radius:18px;
+  padding:40px 30px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:26px;
+  /* background:linear-gradient(135deg,#eef1ff,#ffffff); */
+  background: url(../journal/images/image.png);
+
+  border:1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+  transition:.3s ease;
+
+  background-position: center;
+background-size: cover;
+}
+
+body.dark .hero{
+  /* background:linear-gradient(135deg,#362a20,#1b1612); */
+   background-image: url("./images/Screenshot\ 2026-01-08\ 193156.png");
+  background-repeat: no-repeat;
+  background-position: center center; /* image ko center rakhega */
+  background-size: cover;    
+
+
+  /* background:linear-gradient(135deg,#2d231b,#1f1914); */
+}
+
+
+.hero:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 32px rgba(0,0,0,.08);
+}
+
+/* =================================================
+   GLASS CAPSULE (DATE + GREETING)
+================================================= */
+.glass-capsule{
+  padding:22px 42px;
+  border-radius:50px;
+  text-align:center;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 8px 30px rgba(0,0,0,.35);
+  transition:.3s ease;
+}
+
+.glass-capsule:hover{
+  box-shadow:0 12px 40px rgba(230,168,76,.25);
+}
+
+.glass-capsule .date{
+  font-size:13px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--muted);
+  opacity:.85;
+}
+
+.glass-capsule h1{
+  font-size:32px;
+  font-weight:400;
+  margin-top:6px;
+  font-family:"Georgia","Times New Roman",serif;
+}
+
+/* =================================================
+   MOVING TEXT
+================================================= */
+.text-box{
+  max-width:600px;
+  width:100%;
+  overflow:hidden;
+}
+
+.moving-text{
+  display:inline-block;
+  white-space:nowrap;
+  font-size:18px;
+  font-weight:300;
+  color:var(--muted);
+  opacity:.85;
+  animation:moveRTL 18s linear infinite;
+}
+
+@keyframes moveRTL{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* =================================================
+   PRIMARY BUTTON
+================================================= */
+.primary-btn{
+  padding:14px 38px;
+  font-size:17px;
+  font-family:"Georgia","Times New Roman",serif;
+  background:transparent;
+  color:var(--accent);
+  border:1.5px solid var(--accent);
+  border-radius:30px;
+  cursor:pointer;
+  letter-spacing:.5px;
+  transition:.3s ease;
+}
+
+.primary-btn:hover{
+  background:var(--accent);
+  color:#201812;
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(230,168,76,.25);
+}
+
+/* =================================================
+   STATS
+================================================= */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin:25px 0;
+}
+
+
+
+.stat-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 32px rgba(0,0,0,.08);
+  border-color:var(--accent);
+}
+
+.stat-card .big{
+  font-size:22px;
+  font-weight:bold;
+}
+/* STAT CARD TITLE (h3) HOVER EFFECT */
+.stat-card h3{
+  transition: color .25s ease, transform .25s ease;
+}
+
+.stat-card:hover h3{
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+
+/* =================================================
+   NOTES
+================================================= */
+.notes-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.note-card{
+  background:var(--card);
+  padding:18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  transition:.25s ease;
+}
+
+.note-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 36px rgba(0,0,0,.45);
+  border-color:var(--accent);
+}
+
+.note-card:hover h4{
+  color:var(--accent);
+}
+
+.note-date{
+  font-size:12px;
+  color:var(--accent);
+}
+
+.note-card p{
+  color:var(--muted);
+}
+
+/* =================================================
+   TAGS
+================================================= */
+.tags span{
+  display:inline-block;
+  background:var(--chip);
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  margin:4px;
+}
+
+/* =================================================
+   AUTH
+================================================= */
+.auth-box{
+  max-width:320px;
+  margin:120px auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+  border:1px solid var(--border);
+}
+
+.auth-box input{
+  width:100%;
+  margin:8px 0;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+}
+
+.auth-box button{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border-radius:999px;
+  background:var(--accent);
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  color:#fff;
+}
+
+/* =================================================
+   DELETE BUTTON
+================================================= */
+.delete-btn{
+  background:transparent;
+  border:1px solid #a85c5c;
+  color:#a85c5c;
+  padding:4px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:12px;
+}
+
+.delete-btn:hover{
+  background:#a85c5c;
+  color:#fff;
+}
+/* PROGRESS BAR WRAPPER */
+.progress{
+  height:8px;
+  width:100%;
+  background:var(--border);
+  border-radius:999px;     /* 👈 full rounded */
+  overflow:hidden;         /* 👈 inner bar ko gol banane ke liye */
+  margin-top:10px;
+}
+
+/* PROGRESS FILL */
+.progress .bar{
+  height:100%;
+  width:60%;               /* JS ya inline se change hoga */
+  background:var(--accent);
+  border-radius:999px;     /* 👈 dono side gol */
+  transition:width .4s ease;
+}
+.progress .bar{
+  background:linear-gradient(
+    90deg,
+    var(--accent),
+    rgba(255,255,255,.35)
+  );
+}
+
+
+
+
+
+/* ===============================
+   STAT CARD – BASE (PREMIUM)
+================================ */
+.stat-card{
+  background:rgba(255,255,255,.85);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+
+  backdrop-filter:blur(6px);
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease;
+}
+
+/* Dark mode */
+body.dark .stat-card{
+  background:rgba(42,34,28,.95);
+}
+
+/* Soft top glow line */
+.stat-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:3px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  opacity:.0;
+  transition:.35s ease;
+}
+
+/* Hover – premium lift */
+.stat-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 48px rgba(0,0,0,.15);
+  border-color:var(--accent);
+}
+
+.stat-card:hover::before{
+  opacity:.9;
+}
+
+/* ===============================
+   ICON / EMOJI (h3)
+================================ */
+.stat-card h3{
+  font-size:28px;
+  margin-bottom:6px;
+  transition:transform .3s ease;
+}
+
+.stat-card:hover h3{
+  transform:scale(1.1);
+}
+
+/* ===============================
+   BIG NUMBER
+================================ */
+.stat-card .big{
+  font-size:26px;
+  font-weight:700;
+  margin:6px 0;
+  letter-spacing:.3px;
+}
+
+/* Label */
+.stat-card span{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* ===============================
+   WIDE STAT CARD – HERO PREMIUM
+================================ */
+.stat-card.wide{
+  grid-column:span 2;/* 👈 2 columns घेर लेता है */
+  text-align:left;
+  padding:26px 28px;
+}
+
+/* Title */
+.stat-card.wide h4{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:6px;
+  transition:color .25s ease;
+}
+
+.stat-card.wide:hover h4{
+  color:var(--accent);
+}
+
+/* Description */
+.stat-card.wide p{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:16px;
+}
+
+/* ===============================
+   PREMIUM PROGRESS BAR
+================================ */
+.stat-card.wide .progress{
+  height:10px;
+  background:rgba(0,0,0,.08);
+  border-radius:999px;
+  overflow:hidden;
+  position:relative;
+}
+
+body.dark .stat-card.wide .progress{
+  background:rgba(255,255,255,.12);
+}
+
+/* Fill */
+.stat-card.wide .progress .bar{
+  height:100%;
+  width:0;
+  border-radius:999px;
+  background:linear-gradient(
+    90deg,
+    var(--accent),
+    rgba(255,255,255,.45)
+  );
+  box-shadow:0 0 14px rgba(230,168,76,.65);
+  transition:width .6s ease;
+}
+
+
+.stat-card.tall{
+  grid-row: span 2;   /* 👈 2 rows की height */
+}
+
+
+
+/* ===============================
+   MINI STREAK GRAPH
+================================ */
+.streak-graph{
+  margin-top:24px;
+  padding:24px 26px;
+  border-radius:20px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.85),
+      rgba(255,255,255,.65)
+    );
+  border:1px solid var(--border);
+  backdrop-filter:blur(8px);
+}
+
+/* Dark mode */
+body.dark .streak-graph{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(42,34,28,.95),
+      rgba(32,24,18,.9)
+    );
+}
+
+/* Title */
+.streak-graph h4{
+  font-size:16px;
+  margin-bottom:14px;
+}
+
+/* Bars container */
+.streak-graph .bars{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  height:90px;
+  gap:10px;
+}
+
+/* Individual bar */
+.streak-graph .bars span{
+  flex:1;
+  height:var(--h);
+  background:var(--accent);
+  border-radius:999px;
+  opacity:.85;
+  position:relative;
+  transition:height .4s ease, opacity .3s ease;
+}
+
+/* Empty day */
+.streak-graph .bars span[style*="0%"]{
+  opacity:.2;
+}
+
+/* Day label */
+.streak-graph .bars span::after{
+  content:attr(data-day);
+  position:absolute;
+  bottom:-22px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:11px;
+  color:var(--muted);
+}
+
+/* Hover highlight */
+.streak-graph .bars span:hover{
+  opacity:1;
+  box-shadow:0 0 14px rgba(230,168,76,.6);
+}
+.notes-footer{
+  margin-top:20px;
+  text-align:center;
+}
+
+.view-all-btn{
+  padding:12px 28px;
+  border-radius:999px;
+  background:transparent;
+  border:1.5px solid var(--accent);
+  color:var(--accent);
+  font-family:"Georgia","Times New Roman",serif;
+  font-size:15px;
+  cursor:pointer;
+  letter-spacing:.4px;
+  transition:.3s ease;
+}
+
+.view-all-btn:hover{
+  background:var(--accent);
+  color:#201812;
+  box-shadow:0 8px 22px rgba(230,168,76,.3);
+  transform:translateY(-2px);
+}
+
+
+
+
+
+/* ===== MODAL BACKDROP ===== */
+.entry-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  backdrop-filter: blur(8px);
+  display:none;
+  /* align-items:center; */
+  align-items:flex-start;   /* ❌ center hatao */
+  padding:40px 0;
+  overflow-y:auto;
+  justify-content:center;
+  z-index:999;
+}
+.entry-card{
+  max-height:calc(100vh - 80px); /* 🔑 viewport safe */
+  display:flex;
+  flex-direction:column;
+}
+
+.modal-content{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;          /* 🔑 actual scroll here */
+  padding-right:6px;
+}
+
+/* show */
+.entry-modal.show{
+  display:flex;
+}
+
+/* ===== CARD ===== */
+.entry-card{
+  width:90%;
+  max-width:820px;
+  background:rgba(25,20,16,.95);
+  border-radius:22px;
+  padding:28px;
+  color:#f5ede3;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  animation:scaleIn .25s ease;
+}
+
+/* title */
+.entry-card h2{
+  font-size:28px;
+  margin-bottom:6px;
+}
+
+/* date */
+.modal-date{
+  font-size:14px;
+  color:#e6a84c;
+}
+
+/* actions */
+.modal-actions{
+  margin:16px 0;
+  display:flex;
+  gap:10px;
+}
+
+.modal-actions button{
+  background:transparent;
+  border:1px solid #e6a84c;
+  color:#e6a84c;
+  padding:6px 14px;
+  border-radius:999px;
+  cursor:pointer;
+}
+
+.modal-actions button:hover{
+  background:#e6a84c;
+  color:#1f1a16;
+}
+
+/* content */
+.modal-content{
+  margin-top:20px;
+  line-height:1.8;
+  font-size:16px;
+  white-space:pre-line;
+}
+
+/* close */
+.close-modal{
+  position:absolute;
+  top:20px;
+  right:22px;
+  background:none;
+  border:none;
+  font-size:22px;
+  color:#ccc;
+  cursor:pointer;
+}
+
+/* animation */
+@keyframes scaleIn{
+  from{opacity:0; transform:scale(.95)}
+  to{opacity:1; transform:none}
+}
+/* ===== ENTRY MODAL CARD (THEME SAFE) ===== */
+.entry-card{
+  position:relative;
+  /* width:90%;
+  max-width:820px; */
+
+  /* 🔑 THEME BASED COLORS */
+  background:var(--card);
+  color:var(--text);
+
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:28px;
+
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
+  transition:background .3s ease, color .3s ease;
+}
+body.dark .entry-card{
+  background:linear-gradient(
+    180deg,
+    var(--card),
+    rgba(0,0,0,.15)
+  );
+}
+
+.close-modal{
+  position:absolute;
+  top:20px;
+  right:22px;
+  background:none;
+  border:none;
+  font-size:22px;
+  color:#ccc;
+  cursor:pointer;
+}
+
+
+
+
+
+/* ===============================
+   MODAL BACKDROP
+================================ */
+.entry-modal{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(8px);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 999;
+}
+
+.entry-modal.show{
+  display: flex;
+}
+
+/* ===============================
+   MODAL CARD (CENTERED)
+================================ */
+.entry-card{
+  position: relative;
+
+  width: 90%;
+  max-width: 900px;
+  max-height: 85vh;
+
+  background: var(--card);
+  color: var(--text);
+
+  border-radius: 22px;
+  padding: 26px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden; /* 🔑 stop outer scroll */
+}
+
+/* ===============================
+   HEADER (FIXED)
+================================ */
+.entry-card h2{
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.modal-date{
+  font-size: 14px;
+  color: var(--accent);
+}
+
+/* ===============================
+   CONTENT AREA (SCROLL HERE)
+================================ */
+.modal-content{
+  margin-top: 18px;
+
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  font-size: 15px;
+  line-height: 1.7;
+
+  /* 🔑 REAL FIX */
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* CODE / PRE SAFETY */
+.modal-content pre,
+.modal-content code{
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* ===============================
+   CLOSE BUTTON
+================================ */
+.close-modal{
+  position: absolute;
+  top: 18px;
+  right: 20px;
+
+  background: none;
+  border: none;
+
+  font-size: 22px;
+  cursor: pointer;
+  opacity: .7;
+}
+
+.close-modal:hover{
+  opacity: 1;
+}
+
+
+/* ===============================
+   VIEW ALL – ENTRY CARD FIX
+================================ */
+
+/* Grid remains same */
+.notes-grid{
+  align-items:stretch;
+}
+
+/* Card */
+.note-card{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  height:100%;                 /* 🔑 equal height */
+}
+
+/* Title safe */
+.note-card h4{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* CONTENT PREVIEW FIX */
+.note-card p{
+  color:var(--muted);
+
+  /* 🔑 IMPORTANT LINES */
+  display:-webkit-box;
+  -webkit-line-clamp:2;        /* 👈 sirf 2 lines */
+  -webkit-box-orient:vertical;
+
+  overflow:hidden;
+  word-break:break-word;
+  line-height:1.5;
+}
+
+/* Date always top */
+.note-date{
+  font-size:12px;
+  color:var(--accent);
+  flex-shrink:0;
+}
+.clear-btn{
+  background:linear-gradient(
+    135deg,
+    var(--accent),
+    color-mix(in srgb, var(--accent), #000 15%)
+  );
+  color:#fff;
+  border:none;
+  padding:12px 18px;
+  border-radius:14px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  box-shadow:
+    0 10px 24px color-mix(in srgb, var(--accent), transparent 65%),
+    inset 0 1px 0 rgba(255,255,255,.25);
+
+  transition:.35s ease;
+}
+
+.clear-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 14px 32px color-mix(in srgb, var(--accent), transparent 55%),
+    inset 0 1px 0 rgba(255,255,255,.3);
+}
+
+.clear-btn:active{
+  transform:scale(.96);
+}
+.clear-btn{
+  backdrop-filter:blur(6px);
+}
+
+
+
+/* =========================
+   FULL ENTRY MODAL
+========================= */
+
+.entry-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.entry-modal-content{
+  background:#111;
+  color:#fff;
+  width:65%;
+  max-height:80%;
+  overflow-y:auto;
+  padding:20px;
+  border-radius:12px;
+}
+
+.hidden{
+  display:none;
+}
+
+.close-btn{
+  float:right;
+  border:none;
+  background:none;
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+}

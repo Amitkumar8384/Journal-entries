@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Midnight Journal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <script>
+  if (!localStorage.getItem("currentUser")) {
+    location.href = "./auth/login.html";
+  }
+</script>
+
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">🌙 Midnight</h2>
+<!-- USER PROFILE -->
+
+
+    <nav>
+      <a href="./index.html" class="active">Journal</a>
+      <a href="./write/write.html">Write</a>
+      <a href="./calendar/calendar.html">Calendar</a>
+      <a href="./Insights/Insights.html">Insights</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <!-- <button onclick="logout()">🚪 Logout</button> -->
+<div class="user-profile" id="userProfile">
+  <div class="avatar">👤</div>
+  <span class="user-name" id="userName">User</span>
+
+  <div class="profile-menu" id="profileMenu">
+    <button id="logoutBtn">🚪 Logout</button>
+  </div>
+</div>
+      <span id="themeToggle">🌙 Dark Mode</span>
+
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <div class="glass-capsule">
+  <span class="date" id="dateText"></span>
+  <h1 id="greeting"></h1>
+</div>
+
+       <br> 
+        <div class="text-box">
+  <p class="moving-text">
+    When the world goes quiet,
+    <span class="user-inline-name" id="heroUserName"></span>
+    it’s time to write what truly matters.
+  </p>
+</div>
+      </div>
+      <button class="primary-btn" onclick="location.href='./write/write.html'">
+  ✍ Start Writing
+</button>
+
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="stat-card">
+        <h3>🔥</h3>
+       
+        <p class="big" id="streakCount">0 Days</p>
+
+        
+        <span>Current Streak</span>
+      </div>
+
+      <div class="stat-card">
+        <h3>✒</h3>
+               <p class="big" id="totalEntries">0</p>
+
+        <span>Total Entries</span>
+      </div>
+<div class="stat-card tall">
+       <div class="streak-graph">
+  <h4>📊 Weekly Streak</h4>
+
+  <div class="bars">
+    <span data-day="M"></span>
+    <span data-day="T"></span>
+    <span data-day="W"></span>
+    <span data-day="T"></span>
+    <span data-day="F"></span>
+    <span data-day="S"></span>
+    <span data-day="S"></span>
+  </div>
+</div>
+
+
+      </div>
+      <div class="stat-card wide"> 
+  <h4>Writing Goal</h4>
+
+  <p id="goalPercentText">
+    You’re 0% of the way to your weekly goal
+  </p>
+
+  <div class="progress">
+    <div class="bar" id="goalBar"></div>
+  </div>
+</div>
+
+    </section>
+
+<div>
+     <button class="clear-btn" onclick="clearAllNotes()">
+        🗑️ Clear All Notes
+      </button>
+      </div>
+<br>
+    <!-- NOTES -->
+    <section class="notes">
+      <div class="notes-grid" id="notesGrid"></div>
+      <div class="notes-footer">
+    <button class="view-all-btn" id="viewAllEntries" >
+      📖 View All Entries
+    </button>
+  </div>
+
+    </section>
+
+
+
+    
+
+  </main>
+</div>
+<!-- ENTRY MODAL -->
+<!-- <div class="entry-modal" id="entryModal">
+  <div class="entry-card">
+
+    <button class="close-modal" id="closeModal">✕</button>
+
+    <div class="entry-header">
+      <h2 id="modalTitle"></h2>
+      <div class="modal-date" id="modalDate"></div>
+
+      <div class="modal-actions">
+        <button id="editEntry">✏ Edit</button>
+        <button id="deleteEntry">🗑 Delete</button>
+      </div>
+    </div>
+
+    <div class="modal-content" id="modalContent"></div>
+
+  </div>
+</div> -->
+<div id="entryModal" class="entry-modal hidden">
+  <div class="entry-modal-content">
+    <button class="close-btn" onclick="closeEntry()">✖</button>
+    <h2 id="fullTitle"></h2>
+    <p id="fullDate"></p>
+    <div class="modal-actions">
+  <button class="modal-edit">✏ Edit</button>
+  <button class="modal-delete">🗑 Delete</button>
+</div>
+
+    <hr>
+    <div id="fullContent"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

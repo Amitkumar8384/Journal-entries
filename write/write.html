@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Write | Midnight</title>
+  <link rel="stylesheet" href="write.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">🌙 Midnight</h2>
+    <nav>
+      <a href="../index.html">Journal</a>
+      <a class="active">Write</a>
+      <a href="../calendar/calendar.html">Calendar</a>
+      <a href="../Insights/Insights.html">Insights</a>
+      <button onclick="exportPDF()" class="save-btn">📄 PDF</button>
+
+    </nav>
+      <div class="sidebar-bottom">
+        <!-- <button onclick="logout()">🚪 Logout</button> -->
+<div class="user-profile" id="userProfile">
+  <div class="avatar">👤</div>
+  <span class="user-name" id="userName">User</span>
+
+  <div class="profile-menu" id="profileMenu">
+    <button id="logoutBtn">🚪 Logout</button>
+  </div>
+</div>
+      <span id="themeToggle">🌙 Dark Mode</span>
+
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+     <span class="back" onclick="goBack()">← Back</span>
+
+      <div class="meta">
+        <span id="time"></span>
+        <span id="date"></span>
+      </div>
+      <button class="save-btn" onclick="saveEntry()">💾 Save</button>
+    </div>
+<div class="focus">
+      <button class="focus-btn" onclick="toggleFocus()">🎯 Focus</button>
+
+</div>
+
+    <!-- TITLE -->
+    <input
+      type="text"
+      id="title"
+      class="title-input"
+      placeholder="Title your entry..."
+    />
+
+    <!-- TAG -->
+    <button class="tag-btn" onclick="addTag()">＋ Add tag</button>
+    <div id="tags" class="tags"></div>
+
+    <!-- MOOD -->
+    <section class="mood-box">
+      <p>HOW ARE YOU FEELING?</p>
+      <div class="moods">
+        <span onclick="selectMood(this)">⚡ Inspired</span>
+        <span onclick="selectMood(this)">☀ Calm</span>
+        <span onclick="selectMood(this)">💭 Reflective</span>
+        <span onclick="selectMood(this)">☁ Gloomy</span>
+        <span onclick="selectMood(this)">⛈ Stormy</span>
+      </div>
+    </section>
+
+    <!-- EDITOR -->
+    <section class="editor-card">
+
+     <div class="toolbar">
+  <button data-cmd="bold">B</button>
+  <button data-cmd="italic">I</button>
+  <button data-cmd="underline">U</button>
+  <button data-cmd="insertUnorderedList">•</button>
+</div>
+
+      
+
+
+      <div
+        id="editor"
+        class="editor"
+        contenteditable="true"
+        placeholder="Start writing..."
+      ></div>
+
+    </section>
+    <p id="wordCount" class="word-count">0 words • 0 min read</p>
+
+
+  </main>
+</div>
+
+<script src="write.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Insights | Midnight</title>
+  <link rel="stylesheet" href="insights.css" />
+</head>
+<body>
+
+<script>
+  if (!localStorage.getItem("currentUser")) {
+    location.href = "./auth/login.html";
+  }
+</script>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">🌙 Midnight</h2>
+
+    <nav>
+      <a href="../index.html">Journal</a>
+      <a href="../write/write.html">Write</a>
+      <a href="../calendar/calendar.html">Calendar</a>
+      <a class="active">Insights</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="user-profile" id="userProfile">
+        <div class="avatar">👤</div>
+        <span class="user-name" id="userName">User</span>
+
+        <div class="profile-menu">
+          <button id="logoutBtn">🚪 Logout</button>
+        </div>
+      </div>
+
+      <span id="themeToggle">🌙 Dark Mode</span>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HEADER -->
+   <header class="top">
+  <h1>Insights</h1>
+  <p>Your writing patterns & progress</p>
+
+  <div class="header-badges">
+    <span class="badge-pill" id="badgeEntries">✍ 0 entries</span>
+    <span class="badge-pill accent" id="badgeStreak">🔥 0 day streak</span>
+  </div>
+</header>
+
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="stat-card">
+        <h3>Total Entries</h3>
+        <p id="totalEntries">0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Current Streak</h3>
+        <p id="currentStreak">0 days</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Longest Streak</h3>
+        <p id="longestStreak">0 days</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Consistency</h3>
+        <p id="consistency">0%</p>
+      </div>
+    </section>
+
+    <!-- MONTHLY ACTIVITY -->
+    <section class="card">
+      <h3>📅 Monthly Activity</h3>
+      <div id="monthlyActivity" class="activity"></div>
+    </section>
+
+    <!-- BEST TIME -->
+    <section class="card">
+      <h3>⏰ Best Writing Time</h3>
+      <p id="bestTime">—</p>
+    </section>
+
+    <!-- WORD STATS -->
+    <section class="card">
+      <h3>✍️ Writing Depth</h3>
+      <p>Total Words: <b id="totalWords">0</b></p>
+      <p>Average / Entry: <b id="avgWords">0</b></p>
+    </section>
+
+    <!-- MOODS -->
+    <section class="card">
+      <h3>😊 Mood Breakdown</h3>
+      <div id="moodStats" class="moods"></div>
+      <div id="topMood"></div>
+    </section>
+
+    <!-- AI INSIGHTS -->
+    <section class="card">
+      <h3>🧠 AI Insights</h3>
+      <div id="aiInsights">
+        <ul>
+          <li>📈 You write more consistently on weekends</li>
+          <li>🌙 Most entries are written at night</li>
+          <li>😊 Positive moods dominate your journal</li>
+          <li>🔥 Your streak improves after 3 days of consistency</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REFLECTION PROMPT -->
+    <section class="card">
+      <h3>📝 Reflection Prompt</h3>
+      <p id="prompt">What made today meaningful?</p>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="card">
+  <h3>🏆 Achievements</h3>
+  <div class="badges">
+    <span class="badge" id="streakBadge">🥉 7-Day Streak</span>
+    <span class="badge" id="entriesBadge">🥈 30 Entries</span>
+    <span class="badge" id="wordsBadge">🥇 10k Words</span>
+  </div>
+</section>
+
+
+  </main>
+</div>
+
+<script src="insights.js"></script>
+</body>
+</html>
